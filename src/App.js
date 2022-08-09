@@ -1,12 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import { CheckLisence } from '@pamuditha-blockstars/check-license-react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Home from './components/home';
+import NavBar from './components/navBar';
+import Success from './components/success';
 
 function App() {
-
-  const result = CheckLisence(process.env.REACT_APP_LICENSE_KEY);
-  console.log("License key: " + process.env.REACT_APP_LICENSE_KEY);
-  console.log(result);
+  return(
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<><NavBar/><Home/></>} />
+        <Route path="/success" element={<><NavBar/><Success/></>} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App;
