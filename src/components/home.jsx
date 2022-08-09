@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/home.css'
-import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { CheckLicense } from '@pamuditha-blockstars/check-license-react'
 
-const Home = () =>{
+const Home = ({ authenticate }) =>{
 
     const [licenseKey, setLicenseKey] = useState('');
     const [result, setResult] = useState();
@@ -17,6 +17,11 @@ const Home = () =>{
         setResult(resultSet)
     }
 
+    const getAccress = () =>{
+        authenticate();
+        Navigate('/success');
+    }
+
     return(
     <div className='container'>
         <h1 className='home-title'>Check License Server Sample Site</h1>
@@ -28,9 +33,7 @@ const Home = () =>{
         }
 
         {result == true &&
-            <div class="alert alert-success success" role="alert">
-                License is Ok, <Link to="/success" className='success-redirect'>Click here Redirect to Next Page !!</Link>
-            </div>
+            getAccress()
         }
         </div>
         <div className='home-form'>
